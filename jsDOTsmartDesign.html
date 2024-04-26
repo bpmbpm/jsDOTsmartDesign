@@ -7,27 +7,28 @@
  
  <head>
  <!-- <meta charset="utf-8"> -->
+ <meta charset="utf-8"> 
  <title></title>
  <!-- <script src="./viz-standalone.js"></script> -->
  </head> 
  <body>
-<h1>jsDOT SmartDesign: построение схемы процесса (DOT) по табличному описанию</h1>
-<p>В простейшем случае - просто нажать "Схема"</p>
+<h1>jsDOT SmartDesign: ГЇГ®Г±ГІГ°Г®ГҐГ­ГЁГҐ Г±ГµГҐГ¬Г» ГЇГ°Г®Г¶ГҐГ±Г±Г  (DOT) ГЇГ® ГІГ ГЎГ«ГЁГ·Г­Г®Г¬Гі Г®ГЇГЁГ±Г Г­ГЁГѕ</h1>
+<p>Г‚ ГЇГ°Г®Г±ГІГҐГ©ГёГҐГ¬ Г±Г«ГіГ·Г ГҐ - ГЇГ°Г®Г±ГІГ® Г­Г Г¦Г ГІГј "Г‘ГµГҐГ¬Г "</p>
 <div id="spreadsheet1"></div>
-<p id="p">Выбор EPC/VAD:</p>
+<p id="p">Г‚Г»ГЎГ®Г° EPC/VAD:</p>
 <select id="EPC_VAD">
   <option value="EPC" selected="">EPC</option>
   <option value="VAD">VAD</option>
 </select>
-<button onclick="Button1()">Схема</button>
+<button onclick="Button1()">Г‘ГµГҐГ¬Г </button>
 
 <script>
 var data = [
-    ['событие', 'Начальное событие', '', '', '', '', ''],
-    ['операция', 'Заполнение и печать доверенности', 'Доверенность шаблон', 'Доверенность распечатанная', 'Помощник нотариуса', '', ''],
-    ['операция', 'Проверка и подписание доверенности', 'Доверенность распечатанная', 'Доверенность подписанная', 'Доверитель', '', ''],
-    ['операция', 'Проверка и заверение доверенности', 'Доверенность подписанная', 'Доверенность заверенная', 'Нотариус', '', ''],
-    ['событие', 'Финальное событие', '', '', '', '', ''],
+    ['Г±Г®ГЎГ»ГІГЁГҐ', 'ГЌГ Г·Г Г«ГјГ­Г®ГҐ Г±Г®ГЎГ»ГІГЁГҐ', '', '', '', '', ''],
+    ['Г®ГЇГҐГ°Г Г¶ГЁГї', 'Г‡Г ГЇГ®Г«Г­ГҐГ­ГЁГҐ ГЁ ГЇГҐГ·Г ГІГј Г¤Г®ГўГҐГ°ГҐГ­Г­Г®Г±ГІГЁ', 'Г„Г®ГўГҐГ°ГҐГ­Г­Г®Г±ГІГј ГёГ ГЎГ«Г®Г­', 'Г„Г®ГўГҐГ°ГҐГ­Г­Г®Г±ГІГј Г°Г Г±ГЇГҐГ·Г ГІГ Г­Г­Г Гї', 'ГЏГ®Г¬Г®Г№Г­ГЁГЄ Г­Г®ГІГ Г°ГЁГіГ±Г ', '', ''],
+    ['Г®ГЇГҐГ°Г Г¶ГЁГї', 'ГЏГ°Г®ГўГҐГ°ГЄГ  ГЁ ГЇГ®Г¤ГЇГЁГ±Г Г­ГЁГҐ Г¤Г®ГўГҐГ°ГҐГ­Г­Г®Г±ГІГЁ', 'Г„Г®ГўГҐГ°ГҐГ­Г­Г®Г±ГІГј Г°Г Г±ГЇГҐГ·Г ГІГ Г­Г­Г Гї', 'Г„Г®ГўГҐГ°ГҐГ­Г­Г®Г±ГІГј ГЇГ®Г¤ГЇГЁГ±Г Г­Г­Г Гї', 'Г„Г®ГўГҐГ°ГЁГІГҐГ«Гј', '', ''],
+    ['Г®ГЇГҐГ°Г Г¶ГЁГї', 'ГЏГ°Г®ГўГҐГ°ГЄГ  ГЁ Г§Г ГўГҐГ°ГҐГ­ГЁГҐ Г¤Г®ГўГҐГ°ГҐГ­Г­Г®Г±ГІГЁ', 'Г„Г®ГўГҐГ°ГҐГ­Г­Г®Г±ГІГј ГЇГ®Г¤ГЇГЁГ±Г Г­Г­Г Гї', 'Г„Г®ГўГҐГ°ГҐГ­Г­Г®Г±ГІГј Г§Г ГўГҐГ°ГҐГ­Г­Г Гї', 'ГЌГ®ГІГ Г°ГЁГіГ±', '', ''],
+    ['Г±Г®ГЎГ»ГІГЁГҐ', 'Г”ГЁГ­Г Г«ГјГ­Г®ГҐ Г±Г®ГЎГ»ГІГЁГҐ', '', '', '', '', ''],
 ];
  
  // https://codepen.io/hchiam/pen/qBRzXKK
@@ -37,55 +38,55 @@ table1 = jexcel(document.getElementById('spreadsheet1'), {
     columns: [
         {
             type: 'dropdown',
-            title:'Список_Типов',
+            title:'Г‘ГЇГЁГ±Г®ГЄ_Г’ГЁГЇГ®Гў',
             width:110,
             source:[
-                "событие",
-                "операция",
+                "Г±Г®ГЎГ»ГІГЁГҐ",
+                "Г®ГЇГҐГ°Г Г¶ГЁГї",
                 ]
         },
         {
             type: 'text',
-            title:'Имя события или функции',
+            title:'Г€Г¬Гї Г±Г®ГЎГ»ГІГЁГї ГЁГ«ГЁ ГґГіГ­ГЄГ¶ГЁГЁ',
             width:300
         },
         {
             type: 'dropdown',
-            title:'Входящий документ',
+            title:'Г‚ГµГ®Г¤ГїГ№ГЁГ© Г¤Г®ГЄГіГ¬ГҐГ­ГІ',
             width:250,
             source:[
-                "Доверенность шаблон",
-                "Доверенность распечатанная",
-                "Доверенность подписанная",
-                "Доверенность заверенная",
-                "Копия заверенная",
+                "Г„Г®ГўГҐГ°ГҐГ­Г­Г®Г±ГІГј ГёГ ГЎГ«Г®Г­",
+                "Г„Г®ГўГҐГ°ГҐГ­Г­Г®Г±ГІГј Г°Г Г±ГЇГҐГ·Г ГІГ Г­Г­Г Гї",
+                "Г„Г®ГўГҐГ°ГҐГ­Г­Г®Г±ГІГј ГЇГ®Г¤ГЇГЁГ±Г Г­Г­Г Гї",
+                "Г„Г®ГўГҐГ°ГҐГ­Г­Г®Г±ГІГј Г§Г ГўГҐГ°ГҐГ­Г­Г Гї",
+                "ГЉГ®ГЇГЁГї Г§Г ГўГҐГ°ГҐГ­Г­Г Гї",
                 ]
          },
         {
             type: 'dropdown',
-            title:'Исходящий документ',
+            title:'Г€Г±ГµГ®Г¤ГїГ№ГЁГ© Г¤Г®ГЄГіГ¬ГҐГ­ГІ',
             width:250,
             source:[
-                "Доверенность шаблон",
-                "Доверенность распечатанная",
-                "Доверенность подписанная",
-                "Доверенность заверенная",
-                "Копия заверенная",
+                "Г„Г®ГўГҐГ°ГҐГ­Г­Г®Г±ГІГј ГёГ ГЎГ«Г®Г­",
+                "Г„Г®ГўГҐГ°ГҐГ­Г­Г®Г±ГІГј Г°Г Г±ГЇГҐГ·Г ГІГ Г­Г­Г Гї",
+                "Г„Г®ГўГҐГ°ГҐГ­Г­Г®Г±ГІГј ГЇГ®Г¤ГЇГЁГ±Г Г­Г­Г Гї",
+                "Г„Г®ГўГҐГ°ГҐГ­Г­Г®Г±ГІГј Г§Г ГўГҐГ°ГҐГ­Г­Г Гї",
+                "ГЉГ®ГЇГЁГї Г§Г ГўГҐГ°ГҐГ­Г­Г Гї",
                 ]
         },
         {
             type: 'dropdown',
-            title:'Список_Ролей',
+            title:'Г‘ГЇГЁГ±Г®ГЄ_ГђГ®Г«ГҐГ©',
             width:200,
             source:[
-                "Помощник нотариуса",
-                "Доверитель",
-                "Нотариус",
+                "ГЏГ®Г¬Г®Г№Г­ГЁГЄ Г­Г®ГІГ Г°ГЁГіГ±Г ",
+                "Г„Г®ГўГҐГ°ГЁГІГҐГ«Гј",
+                "ГЌГ®ГІГ Г°ГЁГіГ±",
                 ]
         },
         {
             type: 'dropdown',
-            title:'Список_Систем',
+            title:'Г‘ГЇГЁГ±Г®ГЄ_Г‘ГЁГ±ГІГҐГ¬',
             width:80,
             source:[
                 "MS Word",
@@ -94,41 +95,41 @@ table1 = jexcel(document.getElementById('spreadsheet1'), {
         },
         {
             type: 'text',
-            title:'Прим',
+            title:'ГЏГ°ГЁГ¬',
             width:40
         },
      ]
 });
 
-// Константы из Excel (exDOT SmartDesign)
-//Public Const idWF As Integer = 2, predWF = 3, fixTypeEvFun = 4 ' A - D: ID, предыдущий и тип
-//Public Const nameEvFun As Integer = 5, idEvFun = 6, labelEvFun = 7, nLinkWF = 8  ' E - F - G - H: Функция \ событие + nLinkWF
-//Public Const nameHasInDoc As Integer = 9, idHasInDoc = 10, labelHasInDoc = 11 ' I - J - K: Входящий документ
-//Public Const nameHasOutDoc As Integer = 12, idHasOutDoc = 13, labelHasOutDoc = 14 ' L - M - N: Входящий документ
+// ГЉГ®Г­Г±ГІГ Г­ГІГ» ГЁГ§ Excel (exDOT SmartDesign)
+//Public Const idWF As Integer = 2, predWF = 3, fixTypeEvFun = 4 ' A - D: ID, ГЇГ°ГҐГ¤Г»Г¤ГіГ№ГЁГ© ГЁ ГІГЁГЇ
+//Public Const nameEvFun As Integer = 5, idEvFun = 6, labelEvFun = 7, nLinkWF = 8  ' E - F - G - H: Г”ГіГ­ГЄГ¶ГЁГї \ Г±Г®ГЎГ»ГІГЁГҐ + nLinkWF
+//Public Const nameHasInDoc As Integer = 9, idHasInDoc = 10, labelHasInDoc = 11 ' I - J - K: Г‚ГµГ®Г¤ГїГ№ГЁГ© Г¤Г®ГЄГіГ¬ГҐГ­ГІ
+//Public Const nameHasOutDoc As Integer = 12, idHasOutDoc = 13, labelHasOutDoc = 14 ' L - M - N: Г‚ГµГ®Г¤ГїГ№ГЁГ© Г¤Г®ГЄГіГ¬ГҐГ­ГІ
 //Public Const nameRole As Integer = 15, idRole = 16, labelRole = 17 ' O - P - Q: Role
 //Public Const nameSystem As Integer = 18, idSystem = 19, labelSystem = 20 ' R - S - T: System
 
 const fixTypeEvFun = 0, nameEvFun = 1;
 const nameHasInDoc = 2, nameHasOutDoc = 3;
 const nameRole = 4, nameSystem = 5;
-let txtStream; // = ""; // строка с итоговым DOT скриптом
+let txtStream; // = ""; // Г±ГІГ°Г®ГЄГ  Г± ГЁГІГ®ГЈГ®ГўГ»Г¬ DOT Г±ГЄГ°ГЁГЇГІГ®Г¬
 
 const StEndStart = ['digraph G {', 'digraph G {rankdir="LR"'];
-const DOTstyle = [ // Лист из Excel (exDOT SmartDesign)             // EPC / VAD
-['[shape="hexagon",style="filled",fillcolor="hotpink",label="', '[shape="point",fixedsize=true,height=0.03,width=0.03,style="filled",fillcolor="black",label="' ], // События
-['[shape="box",width=1.5,style="rounded,filled",fillcolor="green",label="', '[shape="cds",width=1.5,style="filled",fillcolor="green",label="' ], // Функции
-// lightgreen - https://dreampuf.github.io/GraphvizOnline/# не понимает
-['[shape="note",style="filled",fillcolor="gray90",label="', '[shape="note",style="filled",fillcolor="WhiteSmoke",label="'], // Документы
-['[style="filled",fillcolor="yellow",label="', '[style="filled",fillcolor="yellow",label="' ], // Роли
-['[shape="box3d",style="filled",fillcolor="lightblue",label="', '[shape="box3d",style="filled",fillcolor="lightblue",label="' ], // Системы, fillcolor="aqua"
+const DOTstyle = [ // Г‹ГЁГ±ГІ ГЁГ§ Excel (exDOT SmartDesign)             // EPC / VAD
+['[shape="hexagon",style="filled",fillcolor="hotpink",label="', '[shape="point",fixedsize=true,height=0.03,width=0.03,style="filled",fillcolor="black",label="' ], // Г‘Г®ГЎГ»ГІГЁГї
+['[shape="box",width=1.5,style="rounded,filled",fillcolor="green",label="', '[shape="cds",width=1.5,style="filled",fillcolor="green",label="' ], // Г”ГіГ­ГЄГ¶ГЁГЁ
+// lightgreen - https://dreampuf.github.io/GraphvizOnline/# Г­ГҐ ГЇГ®Г­ГЁГ¬Г ГҐГІ
+['[shape="note",style="filled",fillcolor="gray90",label="', '[shape="note",style="filled",fillcolor="WhiteSmoke",label="'], // Г„Г®ГЄГіГ¬ГҐГ­ГІГ»
+['[style="filled",fillcolor="yellow",label="', '[style="filled",fillcolor="yellow",label="' ], // ГђГ®Г«ГЁ
+['[shape="box3d",style="filled",fillcolor="lightblue",label="', '[shape="box3d",style="filled",fillcolor="lightblue",label="' ], // Г‘ГЁГ±ГІГҐГ¬Г», fillcolor="aqua"
 ];
 
-const DOTstyleLink = [ // Лист из Excel (exDOT SmartDesign), но для соединителей  
+const DOTstyleLink = [ // Г‹ГЁГ±ГІ ГЁГ§ Excel (exDOT SmartDesign), Г­Г® Г¤Г«Гї Г±Г®ГҐГ¤ГЁГ­ГЁГІГҐГ«ГҐГ©  
 ['[style="bold",tailport=s,headport=n,weight=3];', '[style="bold",tailport=e,headport=w,weight=3];' ], // 0 = workflow 
 ['[style="dashed",tailport=s,headport=w,weight=1];', '[style="dashed",tailport=e,headport=n,weight=1]' ], //1 = HasInDoc
 ['[style="dashed",tailport=w,headport=n,weight=1];', '[style="dashed",tailport=en,headport=w,weight=1];' ], //2 = HasOutDoc
 ['[style="solid",tailport=e,headport=w,arrowhead=none,weight=2];', '[style="solid",tailport=s,headport=n,arrowhead=none,weight=2];' ], //3 = Role
-]; // Линия у Cистемы такая же как и у Роли. Также не ставим rank
+]; // Г‹ГЁГ­ГЁГї Гі CГЁГ±ГІГҐГ¬Г» ГІГ ГЄГ Гї Г¦ГҐ ГЄГ ГЄ ГЁ Гі ГђГ®Г«ГЁ. Г’Г ГЄГ¦ГҐ Г­ГҐ Г±ГІГ ГўГЁГ¬ rank
 
 function Button1()
 {
@@ -136,75 +137,75 @@ function Button1()
 let i;
 let j;
 let AllDoc = []; //?
-for (j = 0; j < 5; j++) { // Формирование справочника Документов (все неповторяющиеся документы)
-// Вызов fruits.push(...) равнозначен fruits[fruits.length] = ....
+for (j = 0; j < 5; j++) { // Г”Г®Г°Г¬ГЁГ°Г®ГўГ Г­ГЁГҐ Г±ГЇГ°Г ГўГ®Г·Г­ГЁГЄГ  Г„Г®ГЄГіГ¬ГҐГ­ГІГ®Гў (ГўГ±ГҐ Г­ГҐГЇГ®ГўГІГ®Г°ГїГѕГ№ГЁГҐГ±Гї Г¤Г®ГЄГіГ¬ГҐГ­ГІГ»)
+// Г‚Г»Г§Г®Гў fruits.push(...) Г°Г ГўГ­Г®Г§Г­Г Г·ГҐГ­ fruits[fruits.length] = ....
  if (table1.getValueFromCoords(nameHasInDoc, j) != "") {
-   AllDoc.push (table1.getValueFromCoords(nameHasInDoc, j)) // первый индекс не строка, а столбец
+   AllDoc.push (table1.getValueFromCoords(nameHasInDoc, j)) // ГЇГҐГ°ГўГ»Г© ГЁГ­Г¤ГҐГЄГ± Г­ГҐ Г±ГІГ°Г®ГЄГ , Г  Г±ГІГ®Г«ГЎГҐГ¶
  } 
  if (table1.getValueFromCoords(nameHasOutDoc, j) != "") {
  AllDoc.push (table1.getValueFromCoords(nameHasOutDoc, j))
  }
 }
-const AllDoc2 = Array.from(new Set(AllDoc)); // Массив уникальных имен объектов типа Документ
- let fig; // фигура
+const AllDoc2 = Array.from(new Set(AllDoc)); // ГЊГ Г±Г±ГЁГў ГіГ­ГЁГЄГ Г«ГјГ­Г»Гµ ГЁГ¬ГҐГ­ Г®ГЎГєГҐГЄГІГ®Гў ГІГЁГЇГ  Г„Г®ГЄГіГ¬ГҐГ­ГІ
+ let fig; // ГґГЁГЈГіГ°Г 
  let figRole;
  let figSystem;
  let selectElem = document.getElementById("EPC_VAD"); 
  let indexEPC = selectElem.selectedIndex // 0=EPC, 1=VAD
 
-txtStream = StEndStart[indexEPC] + '\n';  // Стартовый digraph G
-// Формируем фигуры Документов (из сфоримированного справочника AllDoc2)
+txtStream = StEndStart[indexEPC] + '\n';  // Г‘ГІГ Г°ГІГ®ГўГ»Г© digraph G
+// Г”Г®Г°Г¬ГЁГ°ГіГҐГ¬ ГґГЁГЈГіГ°Г» Г„Г®ГЄГіГ¬ГҐГ­ГІГ®Гў (ГЁГ§ Г±ГґГ®Г°ГЁГ¬ГЁГ°Г®ГўГ Г­Г­Г®ГЈГ® Г±ГЇГ°Г ГўГ®Г·Г­ГЁГЄГ  AllDoc2)
 for (j = 0; j < AllDoc2.length; j++) {
- txtStream += AllDoc2[j].replace(/ /ig, '_') + ' ' + DOTstyle [2][indexEPC] + AllDoc2[j].replace(/ /ig, '\\n') + '"];' + '\n'; // 2 = Входящий и Исходящий документт] в DOTstyle
+ txtStream += AllDoc2[j].replace(/ /ig, '_') + ' ' + DOTstyle [2][indexEPC] + AllDoc2[j].replace(/ /ig, '\\n') + '"];' + '\n'; // 2 = Г‚ГµГ®Г¤ГїГ№ГЁГ© ГЁ Г€Г±ГµГ®Г¤ГїГ№ГЁГ© Г¤Г®ГЄГіГ¬ГҐГ­ГІГІ] Гў DOTstyle
 }
 
 i = 0; 
-do { // цикл по строкам таблицы связей
- fig = table1.getValueFromCoords(nameEvFun, i) // наименование события или функции
- if ( table1.getValueFromCoords(fixTypeEvFun, i) == 'событие') { // событие
-    txtStream += fig.replace(/ /ig, '_') + ' ' + DOTstyle [0][indexEPC] + fig.replace(/ /ig, '\\n') + '"];' + '\n'; // 0 = событие в DOTstyle
+do { // Г¶ГЁГЄГ« ГЇГ® Г±ГІГ°Г®ГЄГ Г¬ ГІГ ГЎГ«ГЁГ¶Г» Г±ГўГїГ§ГҐГ©
+ fig = table1.getValueFromCoords(nameEvFun, i) // Г­Г ГЁГ¬ГҐГ­Г®ГўГ Г­ГЁГҐ Г±Г®ГЎГ»ГІГЁГї ГЁГ«ГЁ ГґГіГ­ГЄГ¶ГЁГЁ
+ if ( table1.getValueFromCoords(fixTypeEvFun, i) == 'Г±Г®ГЎГ»ГІГЁГҐ') { // Г±Г®ГЎГ»ГІГЁГҐ
+    txtStream += fig.replace(/ /ig, '_') + ' ' + DOTstyle [0][indexEPC] + fig.replace(/ /ig, '\\n') + '"];' + '\n'; // 0 = Г±Г®ГЎГ»ГІГЁГҐ Гў DOTstyle
  } 
- if ( table1.getValueFromCoords(fixTypeEvFun, i) == 'операция') { // функция
-   txtStream += fig.replace(/ /ig, '_') + ' ' + DOTstyle [1][indexEPC] + fig.replace(/ /ig, '\\n') + '"];' + '\n'; // 1 = функция в DOTstyle
-   if (table1.getValueFromCoords(nameHasInDoc, i) != "") { // Excel: If Not IsEmpty(.Cells(i, nameHasInDoc)) Then ' Если есть входной документ
-    // Выше нарисовали Входящий документ, теперь его нужно связать с функцией, т.е. рисуем линию:
+ if ( table1.getValueFromCoords(fixTypeEvFun, i) == 'Г®ГЇГҐГ°Г Г¶ГЁГї') { // ГґГіГ­ГЄГ¶ГЁГї
+   txtStream += fig.replace(/ /ig, '_') + ' ' + DOTstyle [1][indexEPC] + fig.replace(/ /ig, '\\n') + '"];' + '\n'; // 1 = ГґГіГ­ГЄГ¶ГЁГї Гў DOTstyle
+   if (table1.getValueFromCoords(nameHasInDoc, i) != "") { // Excel: If Not IsEmpty(.Cells(i, nameHasInDoc)) Then ' Г…Г±Г«ГЁ ГҐГ±ГІГј ГўГµГ®Г¤Г­Г®Г© Г¤Г®ГЄГіГ¬ГҐГ­ГІ
+    // Г‚Г»ГёГҐ Г­Г Г°ГЁГ±Г®ГўГ Г«ГЁ Г‚ГµГ®Г¤ГїГ№ГЁГ© Г¤Г®ГЄГіГ¬ГҐГ­ГІ, ГІГҐГЇГҐГ°Гј ГҐГЈГ® Г­ГіГ¦Г­Г® Г±ГўГїГ§Г ГІГј Г± ГґГіГ­ГЄГ¶ГЁГҐГ©, ГІ.ГҐ. Г°ГЁГ±ГіГҐГ¬ Г«ГЁГ­ГЁГѕ:
     txtStream += table1.getValueFromCoords(nameHasInDoc, i).replace(/ /ig, '_') +' -> ' + fig.replace(/ /ig, '_') + ' ' + DOTstyleLink [1][indexEPC] + '\n';
    } // nameHasInDoc, i) != ""
    
-   if (table1.getValueFromCoords(nameHasOutDoc, i) != "") { // Функция -> Исходящий документ 
- // сформировано ранее:  txtStream += table1.getValueFromCoords(nameHasOutDoc, i).replace(/ /ig, '_') + ' ' + DOTstyle [2][indexEPC] + table1.getValueFromCoords(nameHasOutDoc, i).replace(/ /ig, '\\n') + '"];' + '\n'; // 2 = Входящий и Исходящий документт] в DOTstyle
-     // Добавляем, т.к. входящего может не быть
-     txtStream += fig.replace(/ /ig, '_') + ' -> ' + table1.getValueFromCoords(nameHasOutDoc, i).replace(/ /ig, '_') + ' ' + DOTstyleLink [2][indexEPC] + '\n'; // 2 = HasOutDoc. Рисуем линию 
+   if (table1.getValueFromCoords(nameHasOutDoc, i) != "") { // Г”ГіГ­ГЄГ¶ГЁГї -> Г€Г±ГµГ®Г¤ГїГ№ГЁГ© Г¤Г®ГЄГіГ¬ГҐГ­ГІ 
+ // Г±ГґГ®Г°Г¬ГЁГ°Г®ГўГ Г­Г® Г°Г Г­ГҐГҐ:  txtStream += table1.getValueFromCoords(nameHasOutDoc, i).replace(/ /ig, '_') + ' ' + DOTstyle [2][indexEPC] + table1.getValueFromCoords(nameHasOutDoc, i).replace(/ /ig, '\\n') + '"];' + '\n'; // 2 = Г‚ГµГ®Г¤ГїГ№ГЁГ© ГЁ Г€Г±ГµГ®Г¤ГїГ№ГЁГ© Г¤Г®ГЄГіГ¬ГҐГ­ГІГІ] Гў DOTstyle
+     // Г„Г®ГЎГ ГўГ«ГїГҐГ¬, ГІ.ГЄ. ГўГµГ®Г¤ГїГ№ГҐГЈГ® Г¬Г®Г¦ГҐГІ Г­ГҐ ГЎГ»ГІГј
+     txtStream += fig.replace(/ /ig, '_') + ' -> ' + table1.getValueFromCoords(nameHasOutDoc, i).replace(/ /ig, '_') + ' ' + DOTstyleLink [2][indexEPC] + '\n'; // 2 = HasOutDoc. ГђГЁГ±ГіГҐГ¬ Г«ГЁГ­ГЁГѕ 
    }
-   // Добавляем Роли figRole 
-   if (table1.getValueFromCoords(nameRole, i) != "") // Есть Роль. Отдельная фигура Роли к каждой функции
+   // Г„Г®ГЎГ ГўГ«ГїГҐГ¬ ГђГ®Г«ГЁ figRole 
+   if (table1.getValueFromCoords(nameRole, i) != "") // Г…Г±ГІГј ГђГ®Г«Гј. ГЋГІГ¤ГҐГ«ГјГ­Г Гї ГґГЁГЈГіГ°Г  ГђГ®Г«ГЁ ГЄ ГЄГ Г¦Г¤Г®Г© ГґГіГ­ГЄГ¶ГЁГЁ
    {
      figRole = table1.getValueFromCoords(nameRole, i) + i;
-     txtStream += figRole.replace(/ /ig, '_') + DOTstyle [3][indexEPC] + table1.getValueFromCoords(nameRole, i).replace(/ /ig, '\\n') + '"];' + '\n'; // 3 = Role в DOTstyle
-     txtStream += fig.replace(/ /ig, '_') +  ' -> ' + figRole.replace(/ /ig, '_') + " " + DOTstyleLink [3][indexEPC] + '\n'; // 3 = Role. Рисуем линию к Role 
+     txtStream += figRole.replace(/ /ig, '_') + DOTstyle [3][indexEPC] + table1.getValueFromCoords(nameRole, i).replace(/ /ig, '\\n') + '"];' + '\n'; // 3 = Role Гў DOTstyle
+     txtStream += fig.replace(/ /ig, '_') +  ' -> ' + figRole.replace(/ /ig, '_') + " " + DOTstyleLink [3][indexEPC] + '\n'; // 3 = Role. ГђГЁГ±ГіГҐГ¬ Г«ГЁГ­ГЁГѕ ГЄ Role 
      
      txtStream += '{rank=same; ' + fig.replace(/ /ig, '_') + ';' + figRole.replace(/ /ig, '_') + ';};\n';    // rank=same;
    }
    
-   if (table1.getValueFromCoords(nameSystem, i) != "" && indexEPC != 1) // Есть система and Не VAD. Отдельная фигура Роли к каждой функции
+   if (table1.getValueFromCoords(nameSystem, i) != "" && indexEPC != 1) // Г…Г±ГІГј Г±ГЁГ±ГІГҐГ¬Г  and ГЌГҐ VAD. ГЋГІГ¤ГҐГ«ГјГ­Г Гї ГґГЁГЈГіГ°Г  ГђГ®Г«ГЁ ГЄ ГЄГ Г¦Г¤Г®Г© ГґГіГ­ГЄГ¶ГЁГЁ
    {
-     //  txtStream.Write ("{rank=same; " & idStr & "; " & Replace(.Cells(i, nameRole), " ", "_") & i & ";};") ' добавляем к id роли i
+     //  txtStream.Write ("{rank=same; " & idStr & "; " & Replace(.Cells(i, nameRole), " ", "_") & i & ";};") ' Г¤Г®ГЎГ ГўГ«ГїГҐГ¬ ГЄ id Г°Г®Г«ГЁ i
      figSystem = table1.getValueFromCoords(nameSystem, i) + i;
-     txtStream += figSystem.replace(/ /ig, '_') + DOTstyle [4][indexEPC] + table1.getValueFromCoords(nameSystem, i).replace(/ /ig, '\\n') + '"];' + '\n'; // 4 = system в DOTstyle
-     txtStream += fig.replace(/ /ig, '_') +  ' -> ' + figSystem.replace(/ /ig, '_') + " " + DOTstyleLink [3][indexEPC] + '\n'; // 3 = Role. Рисуем линию к Системе 
-   } // Все тоже самое (в т.ч. DOTstyleLink [3][indexEPC]), только без rank  
+     txtStream += figSystem.replace(/ /ig, '_') + DOTstyle [4][indexEPC] + table1.getValueFromCoords(nameSystem, i).replace(/ /ig, '\\n') + '"];' + '\n'; // 4 = system Гў DOTstyle
+     txtStream += fig.replace(/ /ig, '_') +  ' -> ' + figSystem.replace(/ /ig, '_') + " " + DOTstyleLink [3][indexEPC] + '\n'; // 3 = Role. ГђГЁГ±ГіГҐГ¬ Г«ГЁГ­ГЁГѕ ГЄ Г‘ГЁГ±ГІГҐГ¬ГҐ 
+   } // Г‚Г±ГҐ ГІГ®Г¦ГҐ Г±Г Г¬Г®ГҐ (Гў ГІ.Г·. DOTstyleLink [3][indexEPC]), ГІГ®Г«ГјГЄГ® ГЎГҐГ§ rank  
   
-  } // table1.getValueFromCoords(fixTypeEvFun, i) == 'операция'
+  } // table1.getValueFromCoords(fixTypeEvFun, i) == 'Г®ГЇГҐГ°Г Г¶ГЁГї'
   
- // если это не первый элемиент, то добавляем связь с предшедственником
+ // ГҐГ±Г«ГЁ ГЅГІГ® Г­ГҐ ГЇГҐГ°ГўГ»Г© ГЅГ«ГҐГ¬ГЁГҐГ­ГІ, ГІГ® Г¤Г®ГЎГ ГўГ«ГїГҐГ¬ Г±ГўГїГ§Гј Г± ГЇГ°ГҐГ¤ГёГҐГ¤Г±ГІГўГҐГ­Г­ГЁГЄГ®Г¬
  if ( i > 0) {
-    txtStream += table1.getValueFromCoords(nameEvFun, i-1).replace(/ /ig, '_') +  ' -> ' + fig.replace(/ /ig, '_') + " " + DOTstyleLink [0][indexEPC] + '\n'; // 0 = workflow. Рисуем линию workflow 
+    txtStream += table1.getValueFromCoords(nameEvFun, i-1).replace(/ /ig, '_') +  ' -> ' + fig.replace(/ /ig, '_') + " " + DOTstyleLink [0][indexEPC] + '\n'; // 0 = workflow. ГђГЁГ±ГіГҐГ¬ Г«ГЁГ­ГЁГѕ workflow 
  } // i > 0
    
   
      
   i++;
-} while (i < 5);  //пока не последняя строка таблицы
+} while (i < 5);  //ГЇГ®ГЄГ  Г­ГҐ ГЇГ®Г±Г«ГҐГ¤Г­ГїГї Г±ГІГ°Г®ГЄГ  ГІГ ГЎГ«ГЁГ¶Г»
 txtStream += '}';
 //  alert (txtStream);
   console.log(txtStream);
