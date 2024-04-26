@@ -1,0 +1,216 @@
+<html>
+
+<script src="https://bossanova.uk/jspreadsheet/v4/jexcel.js"></script>
+<link rel="stylesheet" href="https://bossanova.uk/jspreadsheet/v4/jexcel.css" type="text/css" />
+<script src="https://jsuites.net/v4/jsuites.js"></script>
+<link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
+ 
+ <head>
+ <!-- <meta charset="utf-8"> -->
+ <title></title>
+ <!-- <script src="./viz-standalone.js"></script> -->
+ </head> 
+ <body>
+<h1>jsDOT SmartDesign: построение схемы процесса (DOT) по табличному описанию</h1>
+<p>В простейшем случае - просто нажать "Схема"</p>
+<div id="spreadsheet1"></div>
+<p id="p">Выбор EPC/VAD:</p>
+<select id="EPC_VAD">
+  <option value="EPC" selected="">EPC</option>
+  <option value="VAD">VAD</option>
+</select>
+<button onclick="Button1()">Схема</button>
+
+<script>
+var data = [
+    ['событие', 'Начальное событие', '', '', '', '', ''],
+    ['операция', 'Заполнение и печать доверенности', 'Доверенность шаблон', 'Доверенность распечатанная', 'Помощник нотариуса', '', ''],
+    ['операция', 'Проверка и подписание доверенности', 'Доверенность распечатанная', 'Доверенность подписанная', 'Доверитель', '', ''],
+    ['операция', 'Проверка и заверение доверенности', 'Доверенность подписанная', 'Доверенность заверенная', 'Нотариус', '', ''],
+    ['событие', 'Финальное событие', '', '', '', '', ''],
+];
+ 
+ // https://codepen.io/hchiam/pen/qBRzXKK
+table1 = jexcel(document.getElementById('spreadsheet1'), {
+
+    data:data,
+    columns: [
+        {
+            type: 'dropdown',
+            title:'Список_Типов',
+            width:110,
+            source:[
+                "событие",
+                "операция",
+                ]
+        },
+        {
+            type: 'text',
+            title:'Имя события или функции',
+            width:300
+        },
+        {
+            type: 'dropdown',
+            title:'Входящий документ',
+            width:250,
+            source:[
+                "Доверенность шаблон",
+                "Доверенность распечатанная",
+                "Доверенность подписанная",
+                "Доверенность заверенная",
+                "Копия заверенная",
+                ]
+         },
+        {
+            type: 'dropdown',
+            title:'Исходящий документ',
+            width:250,
+            source:[
+                "Доверенность шаблон",
+                "Доверенность распечатанная",
+                "Доверенность подписанная",
+                "Доверенность заверенная",
+                "Копия заверенная",
+                ]
+        },
+        {
+            type: 'dropdown',
+            title:'Список_Ролей',
+            width:200,
+            source:[
+                "Помощник нотариуса",
+                "Доверитель",
+                "Нотариус",
+                ]
+        },
+        {
+            type: 'dropdown',
+            title:'Список_Систем',
+            width:80,
+            source:[
+                "MS Word",
+                "Internet",
+                ]
+        },
+        {
+            type: 'text',
+            title:'Прим',
+            width:40
+        },
+     ]
+});
+
+// Константы из Excel (exDOT SmartDesign)
+//Public Const idWF As Integer = 2, predWF = 3, fixTypeEvFun = 4 ' A - D: ID, предыдущий и тип
+//Public Const nameEvFun As Integer = 5, idEvFun = 6, labelEvFun = 7, nLinkWF = 8  ' E - F - G - H: Функция \ событие + nLinkWF
+//Public Const nameHasInDoc As Integer = 9, idHasInDoc = 10, labelHasInDoc = 11 ' I - J - K: Входящий документ
+//Public Const nameHasOutDoc As Integer = 12, idHasOutDoc = 13, labelHasOutDoc = 14 ' L - M - N: Входящий документ
+//Public Const nameRole As Integer = 15, idRole = 16, labelRole = 17 ' O - P - Q: Role
+//Public Const nameSystem As Integer = 18, idSystem = 19, labelSystem = 20 ' R - S - T: System
+
+const fixTypeEvFun = 0, nameEvFun = 1;
+const nameHasInDoc = 2, nameHasOutDoc = 3;
+const nameRole = 4, nameSystem = 5;
+let txtStream; // = ""; // строка с итоговым DOT скриптом
+
+const StEndStart = ['digraph G {', 'digraph G {rankdir="LR"'];
+const DOTstyle = [ // Лист из Excel (exDOT SmartDesign)             // EPC / VAD
+['[shape="hexagon",style="filled",fillcolor="hotpink",label="', '[shape="point",fixedsize=true,height=0.03,width=0.03,style="filled",fillcolor="black",label="' ], // События
+['[shape="box",width=1.5,style="rounded,filled",fillcolor="green",label="', '[shape="cds",width=1.5,style="filled",fillcolor="green",label="' ], // Функции
+// lightgreen - https://dreampuf.github.io/GraphvizOnline/# не понимает
+['[shape="note",style="filled",fillcolor="gray90",label="', '[shape="note",style="filled",fillcolor="WhiteSmoke",label="'], // Документы
+['[style="filled",fillcolor="yellow",label="', '[style="filled",fillcolor="yellow",label="' ], // Роли
+['[shape="box3d",style="filled",fillcolor="lightblue",label="', '[shape="box3d",style="filled",fillcolor="lightblue",label="' ], // Системы, fillcolor="aqua"
+];
+
+const DOTstyleLink = [ // Лист из Excel (exDOT SmartDesign), но для соединителей  
+['[style="bold",tailport=s,headport=n,weight=3];', '[style="bold",tailport=e,headport=w,weight=3];' ], // 0 = workflow 
+['[style="dashed",tailport=s,headport=w,weight=1];', '[style="dashed",tailport=e,headport=n,weight=1]' ], //1 = HasInDoc
+['[style="dashed",tailport=w,headport=n,weight=1];', '[style="dashed",tailport=en,headport=w,weight=1];' ], //2 = HasOutDoc
+['[style="solid",tailport=e,headport=w,arrowhead=none,weight=2];', '[style="solid",tailport=s,headport=n,arrowhead=none,weight=2];' ], //3 = Role
+]; // Линия у Cистемы такая же как и у Роли. Также не ставим rank
+
+function Button1()
+{
+
+let i;
+let j;
+let AllDoc = []; //?
+for (j = 0; j < 5; j++) { // Формирование справочника Документов (все неповторяющиеся документы)
+// Вызов fruits.push(...) равнозначен fruits[fruits.length] = ....
+ if (table1.getValueFromCoords(nameHasInDoc, j) != "") {
+   AllDoc.push (table1.getValueFromCoords(nameHasInDoc, j)) // первый индекс не строка, а столбец
+ } 
+ if (table1.getValueFromCoords(nameHasOutDoc, j) != "") {
+ AllDoc.push (table1.getValueFromCoords(nameHasOutDoc, j))
+ }
+}
+const AllDoc2 = Array.from(new Set(AllDoc)); // Массив уникальных имен объектов типа Документ
+ let fig; // фигура
+ let figRole;
+ let figSystem;
+ let selectElem = document.getElementById("EPC_VAD"); 
+ let indexEPC = selectElem.selectedIndex // 0=EPC, 1=VAD
+
+txtStream = StEndStart[indexEPC] + '\n';  // Стартовый digraph G
+// Формируем фигуры Документов (из сфоримированного справочника AllDoc2)
+for (j = 0; j < AllDoc2.length; j++) {
+ txtStream += AllDoc2[j].replace(/ /ig, '_') + ' ' + DOTstyle [2][indexEPC] + AllDoc2[j].replace(/ /ig, '\\n') + '"];' + '\n'; // 2 = Входящий и Исходящий документт] в DOTstyle
+}
+
+i = 0; 
+do { // цикл по строкам таблицы связей
+ fig = table1.getValueFromCoords(nameEvFun, i) // наименование события или функции
+ if ( table1.getValueFromCoords(fixTypeEvFun, i) == 'событие') { // событие
+    txtStream += fig.replace(/ /ig, '_') + ' ' + DOTstyle [0][indexEPC] + fig.replace(/ /ig, '\\n') + '"];' + '\n'; // 0 = событие в DOTstyle
+ } 
+ if ( table1.getValueFromCoords(fixTypeEvFun, i) == 'операция') { // функция
+   txtStream += fig.replace(/ /ig, '_') + ' ' + DOTstyle [1][indexEPC] + fig.replace(/ /ig, '\\n') + '"];' + '\n'; // 1 = функция в DOTstyle
+   if (table1.getValueFromCoords(nameHasInDoc, i) != "") { // Excel: If Not IsEmpty(.Cells(i, nameHasInDoc)) Then ' Если есть входной документ
+    // Выше нарисовали Входящий документ, теперь его нужно связать с функцией, т.е. рисуем линию:
+    txtStream += table1.getValueFromCoords(nameHasInDoc, i).replace(/ /ig, '_') +' -> ' + fig.replace(/ /ig, '_') + ' ' + DOTstyleLink [1][indexEPC] + '\n';
+   } // nameHasInDoc, i) != ""
+   
+   if (table1.getValueFromCoords(nameHasOutDoc, i) != "") { // Функция -> Исходящий документ 
+ // сформировано ранее:  txtStream += table1.getValueFromCoords(nameHasOutDoc, i).replace(/ /ig, '_') + ' ' + DOTstyle [2][indexEPC] + table1.getValueFromCoords(nameHasOutDoc, i).replace(/ /ig, '\\n') + '"];' + '\n'; // 2 = Входящий и Исходящий документт] в DOTstyle
+     // Добавляем, т.к. входящего может не быть
+     txtStream += fig.replace(/ /ig, '_') + ' -> ' + table1.getValueFromCoords(nameHasOutDoc, i).replace(/ /ig, '_') + ' ' + DOTstyleLink [2][indexEPC] + '\n'; // 2 = HasOutDoc. Рисуем линию 
+   }
+   // Добавляем Роли figRole 
+   if (table1.getValueFromCoords(nameRole, i) != "") // Есть Роль. Отдельная фигура Роли к каждой функции
+   {
+     figRole = table1.getValueFromCoords(nameRole, i) + i;
+     txtStream += figRole.replace(/ /ig, '_') + DOTstyle [3][indexEPC] + table1.getValueFromCoords(nameRole, i).replace(/ /ig, '\\n') + '"];' + '\n'; // 3 = Role в DOTstyle
+     txtStream += fig.replace(/ /ig, '_') +  ' -> ' + figRole.replace(/ /ig, '_') + " " + DOTstyleLink [3][indexEPC] + '\n'; // 3 = Role. Рисуем линию к Role 
+     
+     txtStream += '{rank=same; ' + fig.replace(/ /ig, '_') + ';' + figRole.replace(/ /ig, '_') + ';};\n';    // rank=same;
+   }
+   
+   if (table1.getValueFromCoords(nameSystem, i) != "" && indexEPC != 1) // Есть система and Не VAD. Отдельная фигура Роли к каждой функции
+   {
+     //  txtStream.Write ("{rank=same; " & idStr & "; " & Replace(.Cells(i, nameRole), " ", "_") & i & ";};") ' добавляем к id роли i
+     figSystem = table1.getValueFromCoords(nameSystem, i) + i;
+     txtStream += figSystem.replace(/ /ig, '_') + DOTstyle [4][indexEPC] + table1.getValueFromCoords(nameSystem, i).replace(/ /ig, '\\n') + '"];' + '\n'; // 4 = system в DOTstyle
+     txtStream += fig.replace(/ /ig, '_') +  ' -> ' + figSystem.replace(/ /ig, '_') + " " + DOTstyleLink [3][indexEPC] + '\n'; // 3 = Role. Рисуем линию к Системе 
+   } // Все тоже самое (в т.ч. DOTstyleLink [3][indexEPC]), только без rank  
+  
+  } // table1.getValueFromCoords(fixTypeEvFun, i) == 'операция'
+  
+ // если это не первый элемиент, то добавляем связь с предшедственником
+ if ( i > 0) {
+    txtStream += table1.getValueFromCoords(nameEvFun, i-1).replace(/ /ig, '_') +  ' -> ' + fig.replace(/ /ig, '_') + " " + DOTstyleLink [0][indexEPC] + '\n'; // 0 = workflow. Рисуем линию workflow 
+ } // i > 0
+   
+  
+     
+  i++;
+} while (i < 5);  //пока не последняя строка таблицы
+txtStream += '}';
+//  alert (txtStream);
+  console.log(txtStream);
+  window.open("https://dreampuf.github.io/GraphvizOnline/#" + txtStream); // https://dreampuf.github.io/GraphvizOnline/#
+}
+
+</script>
+</body>
+</html>
