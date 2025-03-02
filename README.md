@@ -33,9 +33,9 @@ https://bpmbpm.github.io/jsDOTsmartDesign/jsDOTsmartDesign.html - не рабо�
 
 Должно быть так:
 1. Открытие jsDOTsmartDesign.html в браузере:
-[стартовый экран](jsDOT_1.png)    
+![стартовый экран](jsDOT_1.png)    
 2. Нажатие кнопки "Схема"
-[отображение схемы](jsDOT_2.png)  
+![отображение схемы](jsDOT_2.png)  
 
 Ссылки:  
 https://www.npmjs.com/package/jexcel
