@@ -38,4 +38,4 @@ https://github.com/mdaines/viz-js
 
 Ссылки:  
 https://www.npmjs.com/package/jexcel  
-Напоминание: В отличте от ARIS Smart Design оба проекта jsDOT SmartDesign и exDOT SmartDesign - не двунаправленные (не работают в две стороны) и работают только "таблица - схема". Хорошо бы сделать двунаправленный. 
+Напоминание: В отличте от ARIS Smart Design оба проекта jsDOT SmartDesign и exDOT SmartDesign - не двунаправленные (не работают в две стороны) и работают только "таблица -> схема". Хорошо бы сделать двунаправленный. 
