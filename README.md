@@ -24,8 +24,8 @@ https://github.com/mdaines/viz-js
 
 # upd 1Q2025
 Как обычно что-то в этих "облаках" что-то пеерименовали, что-то поменяли. Переделал пару ссылок, которые взял отсюда: https://cdnjs.com/libraries/jexcel  
-'https://cdnjs.cloudflare.com/ajax/libs/jexcel/4.6.1/jexcel.min.js' /
-'https://cdnjs.cloudflare.com/ajax/libs/jexcel/4.6.1/jexcel.css'
+`https://cdnjs.cloudflare.com/ajax/libs/jexcel/4.6.1/jexcel.min.js` /
+`https://cdnjs.cloudflare.com/ajax/libs/jexcel/4.6.1/jexcel.css`
 
 Ссылки:  
 https://www.npmjs.com/package/jexcel
