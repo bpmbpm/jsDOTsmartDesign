@@ -1,3 +1,4 @@
+см. upd 1Q2025
 ## jsDOTsmartDesign
 jsDOT SmartDesign - инструмент типа «Таблица -> Схема» для формализации бизнес-процессов. 
 
@@ -23,9 +24,12 @@ https://github.com/mdaines/viz-js
 Содержание DOT- скрипта в консоли браузера. Таблица ограничена пятью строками, более полный концепт (вкл. редактирование справочников) см. exDOT SmartDesign https://github.com/bpmbpm/exDOTsmartDesign (прототип Aris SmartDesign). 
 
 # upd 1Q2025
-Как обычно что-то в этих "облаках" что-то пеерименовали, что-то поменяли. Переделал пару ссылок, которые взял отсюда: https://cdnjs.com/libraries/jexcel  
+"Как обычно" что-то в этих "облаках" что-то переименовали, что-то поменяли.   
+1. На bossanova.uk что-то переделали. Переделал с него на cdnjs.com: https://cdnjs.com/libraries/jexcel  
 `https://cdnjs.cloudflare.com/ajax/libs/jexcel/4.6.1/jexcel.min.js` \
 `https://cdnjs.cloudflare.com/ajax/libs/jexcel/4.6.1/jexcel.css`
+2. На Github Pages тоже что-то "усовершенствовали" и теперь работает только при скачивании и запуске jsDOTsmartDesign.html
+https://bpmbpm.github.io/jsDOTsmartDesign/jsDOTsmartDesign.html - не работает с заданной функциональность. 
 
 Ссылки:  
 https://www.npmjs.com/package/jexcel
