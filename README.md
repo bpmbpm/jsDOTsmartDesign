@@ -28,8 +28,8 @@ https://github.com/mdaines/viz-js
 1. На bossanova.uk что-то переделали. Переделал с него ссылки на cdnjs.com: https://cdnjs.com/libraries/jexcel  
 `https://cdnjs.cloudflare.com/ajax/libs/jexcel/4.6.1/jexcel.min.js` \
 `https://cdnjs.cloudflare.com/ajax/libs/jexcel/4.6.1/jexcel.css`
-2. На Github Pages тоже что-то "усовершенствовали" и теперь работает только при скачивании и локальном запуске jsDOTsmartDesign.html
-https://bpmbpm.github.io/jsDOTsmartDesign/jsDOTsmartDesign.html - не работает с заданной функциональность. 
+2. На Github Pages тоже что-то "усовершенствовали" и теперь работает только при скачивании и локальном запуске jsDOTsmartDesign.html   
+т.е. https://bpmbpm.github.io/jsDOTsmartDesign/jsDOTsmartDesign.html - не работает с заданной функциональность. 
 
 Должно быть так:
 1. Открытие jsDOTsmartDesign.html в браузере:
