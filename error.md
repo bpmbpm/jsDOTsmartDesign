@@ -26,13 +26,16 @@
 ## CDNJS
 Похоже, ваш сетевой экран блокирует подключение к публичным библиотекам (CDN) jSuites и Jspreadsheet. Это можно исправить, полностью перейдя на локальные файлы.
 
-Шаг 1: Создание папки и скачивание файлов  
-Для работы с локальными версиями вам понадобятся файлы двух библиотек. Вот откуда их можно безопасно загрузить:
+скачайте новые файлы и положите в папку lib:
 
-для jsuites.js и тоже сохраните в lib.  
-Jspreadsheet CE (v4.11.0): Хотя jsuites.net/v5/jsuites.js недоступен, Библиотека Jspreadsheet CE v4 всё ещё доступна и работает. Скачать нужные файлы и версию можно со страницы проекта на npm. Вам понадобятся jspreadsheet.css и index.min.js (или jspreadsheet.min.js).
+1.1. Jspreadsheet CE (v4.11.0):
 
-Откройте ссылку на файл: https://cdn.jsdelivr.net/npm/jspreadsheet-ce@4.11.0/dist/jspreadsheet.min.css.  
-Сохраните его как jspreadsheet.css в папку lib.  
-Откройте ссылку на JS-файл: https://cdn.jsdelivr.net/npm/jspreadsheet-ce@4.11.0/dist/jspreadsheet.min.js.  
-Сохраните его как jspreadsheet.js в папку lib.  
+Главный скрипт (index.min.js): https://cdn.jsdelivr.net/npm/jspreadsheet-ce@4.11.0/dist/index.min.js
+
+Стили (jspreadsheet.min.css): https://cdn.jsdelivr.net/npm/jspreadsheet-ce@4.11.0/dist/jspreadsheet.min.css
+
+1.2. JSuites (v4.8.0):
+
+Главный скрипт (index.js): https://cdn.jsdelivr.net/npm/jsuites@4.8.0/dist/index.js
+
+Стили (jsuites.css): https://cdn.jsdelivr.net/npm/jsuites@4.8.0/dist/jsuites.css
