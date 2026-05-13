@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>jsDOT SmartDesign VAD (ver3)</title>
+  
+  <!--
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jexcel/4.6.1/jexcel.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jexcel/4.6.1/jexcel.css" type="text/css">
+  <script src="https://jsuites.net/v4/jsuites.js"></script>
+  <link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css">
+  -->
+  
+  <script src="../lib/jexcel.min.js"></script>
+  <link rel="stylesheet" href="../lib/jexcel.css" type="text/css" />
+  
+  <script src="../lib/jsuites.js"></script>
+  <link rel="stylesheet" href="../lib/jsuites.css" type="text/css" />
+
+  
+  <style>
+   
+    body { font-family: Arial, sans-serif; margin: 24px; color: #202124; }
+    h1 { font-size: 26px; margin-bottom: 8px; }
+    .toolbar { display: flex; gap: 12px; align-items: center; margin: 16px 0; flex-wrap: wrap; }
+    label { font-weight: 700; }
+    select, button { font: inherit; padding: 6px 10px; }
+    button { cursor: pointer; }
+    #notation-description { max-width: 980px; margin: 10px 0 18px; }
+    #dot-output { width: min(100%, 1100px); height: 280px; margin-top: 18px; font-family: Consolas, monospace; }
+    .legend-row { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; margin: 12px 0 18px; }
+    .legend-row img { max-height: 110px; border: 1px solid #e0e0e0; padding: 6px; background: #fafafa; }
+    /* Подсветка используемых/не используемых колонок таблицы */
+    .vad-col-used { background-color: #E8F5E9 !important; }
+    .vad-col-unused { background-color: #FAFAFA !important; color: #9E9E9E !important; }
+    thead .vad-col-used { background-color: #C8E6C9 !important; }
+    thead .vad-col-unused { background-color: #EEEEEE !important; color: #757575 !important; }
+  </style>
+</head>
+<body>
+  <h1>jsDOT SmartDesign VAD - версия 3</h1>
+  <p>В простейшем случае - просто нажать "Схема". При смене нотации колонки таблицы подсвечиваются: зелёные участвуют в построении, серые - игнорируются выбранной нотацией.</p>
+  <p>
+    <a href="./notation/all3.md">Подробное описание нотаций (all3.md)</a> ·
+    <a href="./notation/comparison3.md">Сравнение нотаций (comparison3.md)</a> ·
+    <a href="./notation/analysis3.md">Аналитика и метамодель (analysis3.md)</a> ·
+    <a href="./legends/">Легенды нотаций</a>
+  </p>
+  <div id="spreadsheet1"></div>
+  <div class="toolbar">
+    <label for="notation">Выбор VAD/BCD нотации:</label>
+    <select id="notation"></select>
+    <button id="graph-button" type="button">Схема</button>
+  </div>
+  <p id="notation-description"></p>
+  <textarea id="dot-output" readonly aria-label="DOT-код"></textarea>
+  <script type="module">
+    import { mountVadApp } from "./js/vad-app.js";
+    mountVadApp({ document, jexcel, window });
+  </script>
+</body>
+</html>
