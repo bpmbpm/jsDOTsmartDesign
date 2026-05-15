@@ -1,6 +1,7 @@
-## general
-### semantic
+# general
+## semantic
 Обобщенная Семантика VAD
+## base
 ### main
 - VAD-Процесс
   - Свойства
